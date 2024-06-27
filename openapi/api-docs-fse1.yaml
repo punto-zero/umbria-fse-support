@@ -1,0 +1,659 @@
+openapi: 3.0.1
+info:
+  description: "## Introduzione\nIl sistema espone le sue entità attraverso Web Service\
+    \ API basato su architettura [REST](https://en.wikipedia.org/wiki/REST).\n\nLe\
+    \ API sono strutturate tramite URL orientati alle risorse, \nritornano risorse\
+    \ in formato JSON e usano i codici di risposta e i metodi secondo standard HTTP.\n\
+    \nIl formato dei dati delle richieste/risposte è basato sullo standard HL7.\n\n\
+    [Tipi Dato](https://hl7-definition.caristix.com/v2/HL7v2.5.1/DataTypes)\n\n##\
+    \ Informazioni sulle richieste API REST\n\n### Autenticazione\nLe linee guida\
+    \ nazionali di FSE indicano come metodo di autenticazione\nl'utilizzo di due token\
+    \ [JWT](https://github.com/ministero-salute/it-fse-support/tree/main/doc/integrazione-gateway#131-campi-contenuti-nei-jwt)\n\
+    presenti nell'header della richiesta.\n- `Authorization: Bearer {token}` - Token\
+    \ di auth che ha informazioni riguardo l'autore della richiesta\n- `FSE-JWT-Signature:\
+    \ {token}` - Token di firma che ha informazioni utili per completare la richiesta\
+    \ con successo.\n\n### Performance\nIl sistema consente la compressione del body\
+    \ della risposta tramite `gzip`, si consiglia di abilitarlo lato client.\n\n###\
+    \ File Upload\nLe dimensioni massime accettate per il caricamento di un file sono\
+    \ 5MB.\n\n### Paginazione\nAlcuni endpoint sono paginati di default, ovvero ritornano\
+    \ solo una parte della risposta.\nQuesto per poter gestire al meglio risposte\
+    \ composte da parecchi dati.\n\n#### Paginazione basata su Cursori\nUn cursore\
+    \ è rappresentato da una stringa di caratteri e punta ad un elemento della pagina\
+    \ ritornata.\nUn cursore punta sempre ad un elemento specifico,\ntuttavia potrebbe\
+    \ perdere di significato se l'elemento in questione viene ad esempio cancellato.\n\
+    Per questo motivo il client non deve mai salvare il cursore e/o asserire che questo\
+    \ sarà sempre valido in futuro.\n\nIl formato di una risposta paginata è il seguente\n\
+    ```json\n{\n  \"content\": [],\n  \"paging\": {\n    \"cursors\": {\n      \"\
+    after\": \"MTIzNDU2Nzg5\",\n      \"before\": \"OTg3NjU0MzIx\"\n    },\n    \"\
+    size\": 1234\n  }\n}\n``` \n\n##### Parametri di paginazione\nCome definito sopra\
+    \ la paginazione è attiva di default, ma può essere gestita aggiungendo o modificando\n\
+    il valore dei seguenti parametri nella richiesta\n* `after`: Cursore che punta\
+    \ all'ultimo elemento della pagina ritornata.\n* `before`: Cursore che punta al\
+    \ primo elemento della pagina ritornata.\n* `limit`: Massimo numero di oggetti\
+    \ che possono essere ritornati.\n\n**Una pagina potrebbe avere meno elementi di\
+    \ quelli specificati dal campo `limit`.\nQuesto non significa che la paginazione\
+    \ è terminata, ma soltanto che si sono verificati casi,\ncome la cancellazione\
+    \ di un elemento, che incidono sul numero di elementi ritornati in una pagina.\n\
+    Per sapere se la pagina ritornata è l'ultima, bisogna basarsi sulla presenza o\
+    \ meno del valore del cursore `after`**\n\n## Errori\nIl servizio utilizza codici\
+    \ di risposta HTTP convenzionali per indicare il successo o il fallimento di una\
+    \ richiesta API.\nIn generale codici nel range di\n* `2xx` indicano successo\n\
+    * `4xx` indicano errori client\n* `5xx` indicano errori server.\n\nIl formato\
+    \ JSON dell'errore segue lo standard RFC 7807 (Problem Details) di seguito definito\n\
+    \n ```json\n { \n   \"type\": String,\n   \"title\": String,\n   \"status\": int,\n\
+    \   \"detail\": String,\n   \"instance\": path \n }\n ```\n"
+  title: Interfaccia FSE1 per servizi ITI IHE
+  version: v1
+paths:
+  /fse1/v1/documents/metadata:
+    get:
+      description: |
+        Recupera i metadati dei documenti.
+        L'endpoint è paginato tramite cursori.
+
+        Per poter effettuare una ricerca bisogna definire la tipologia della [Query Hl7](https://profiles.ihe.net/ITI/TF/Volume2/ITI-18.html#3.18.4.1.2.4)
+        e i relativi filtri.
+
+        Query implementate:
+        * FindDocuments: 14d4debf-8f97-4251-9a74-a90016b0af0d
+        * GetDocuments: 5c4f972b-d56b-40ac-a5fc-c8ca9b40b9d4
+
+        Ogni filtro va specificato come query param della richiesta e se consente più valori, allora questi vanno
+        separati dal carattere pipe `|`.
+      operationId: getDocumentEntryMetadata
+      parameters:
+      - in: header
+        name: FSE-JWT-Signature
+        required: true
+        schema:
+          type: string
+      - description: UUID della query HL7 che si vuole eseguire.
+        in: query
+        name: queryId
+        required: true
+        schema:
+          type: string
+      - description: Massimo numero di oggetti che possono essere ritornati
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 30
+          maximum: 30
+          minimum: 1
+      - description: Cursore per richiedere la pagina precedente
+        in: query
+        name: before
+        required: false
+        schema:
+          type: string
+      - description: Cursore per richiedere la pagina successiva
+        in: query
+        name: after
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: homeCommunityId
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: filtri
+        required: true
+        schema:
+          type: object
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedResponseDocumentEntryResource'
+          description: OK
+      security:
+      - BearerAuthentication: []
+      summary: Query Metadati
+      tags:
+      - Fse1
+  /fse1/v1/repositories/{repositoryId}/documents:
+    post:
+      description: Pubblica un Documento nel circuito FSE 1
+      operationId: createDocument
+      parameters:
+      - in: path
+        name: repositoryId
+        required: true
+        schema:
+          type: string
+          format: OID
+      - in: header
+        name: FSE-JWT-Signature
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                requestBody:
+                  $ref: '#/components/schemas/CreateDocumentRequest'
+              required:
+              - file
+              - requestBody
+      responses:
+        "201":
+          description: Created
+      security:
+      - BearerAuthentication: []
+      summary: Pubblicazione di un Documento
+      tags:
+      - Fse1
+  /fse1/v1/repositories/{repositoryId}/documents/{documentId}:
+    delete:
+      description: Elimina un Documento e i relativi metadati
+      operationId: deleteDocument
+      parameters:
+      - in: header
+        name: FSE-JWT-Signature
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: repositoryId
+        required: true
+        schema:
+          type: string
+          format: OID
+      - in: path
+        name: documentId
+        required: true
+        schema:
+          type: string
+          format: EI
+      - in: query
+        name: homeCommunityId
+        required: false
+        schema:
+          type: string
+      responses:
+        "204":
+          description: No Content
+      security:
+      - BearerAuthentication: []
+      summary: Cancellazione di un Documento
+      tags:
+      - Fse1
+    get:
+      operationId: getDocuments
+      parameters:
+      - in: header
+        name: FSE-JWT-Signature
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: repositoryId
+        required: true
+        schema:
+          type: string
+          format: OID
+      - in: path
+        name: documentId
+        required: true
+        schema:
+          type: string
+          format: EI
+      - in: query
+        name: homeCommunityId
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+          description: OK
+      security:
+      - BearerAuthentication: []
+      summary: Download del Documento
+      tags:
+      - Fse1
+    put:
+      description: Sostituisce un Documento nel circuito FSE 1
+      operationId: putDocument
+      parameters:
+      - in: header
+        name: FSE-JWT-Signature
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: repositoryId
+        required: true
+        schema:
+          type: string
+          format: OID
+      - in: path
+        name: documentId
+        required: true
+        schema:
+          type: string
+          format: EI
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                requestBody:
+                  $ref: '#/components/schemas/CreateDocumentRequest'
+              required:
+              - file
+              - requestBody
+      responses:
+        "204":
+          description: No Content
+      security:
+      - BearerAuthentication: []
+      summary: Sostituzione di un Documento
+      tags:
+      - Fse1
+  /fse1/v1/repositories/{repositoryId}/documents/{documentId}/metadata:
+    put:
+      description: Aggiorna i metadati del Documento nel circuito FSE 1
+      operationId: putMetadata
+      parameters:
+      - in: header
+        name: FSE-JWT-Signature
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: repositoryId
+        required: true
+        schema:
+          type: string
+          format: OID
+      - in: path
+        name: documentId
+        required: true
+        schema:
+          type: string
+          format: EI
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateMetadataRequest'
+        required: true
+      responses:
+        "204":
+          description: No Content
+      security:
+      - BearerAuthentication: []
+      summary: Aggiornamento metadati di un Documento
+      tags:
+      - Fse1
+components:
+  schemas:
+    AssigningAuthority:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/OID'
+    AuthorResource:
+      type: object
+      properties:
+        institution:
+          type: string
+          format: XON
+        person:
+          type: string
+          format: XCN
+        role:
+          type: string
+        specialties:
+          type: array
+          items:
+            type: string
+        telecommunications:
+          type: array
+          format: XTN
+          items:
+            type: string
+            format: XTN
+    CX:
+      type: object
+    CXi:
+      type: object
+      properties:
+        accessionNumber:
+          type: boolean
+        assigningAuthority:
+          $ref: '#/components/schemas/AssigningAuthority'
+        id:
+          type: string
+    ClassificationResource:
+      type: object
+      properties:
+        code:
+          type: string
+        codingScheme:
+          type: string
+        description:
+          type: string
+    CreateDocumentRequest:
+      type: object
+      properties:
+        administrativeRequest:
+          type: string
+        assettoOrganizzativo:
+          type: string
+        attiCliniciRegoleAccesso:
+          type: array
+          items:
+            type: string
+          uniqueItems: true
+        author:
+          $ref: '#/components/schemas/AuthorResource'
+        confidentialityCode:
+          type: string
+        conservazioneANorma:
+          type: string
+        creationTime:
+          $ref: '#/components/schemas/DTM'
+        dataFinePrestazione:
+          $ref: '#/components/schemas/DTM'
+        dataInizioPrestazione:
+          $ref: '#/components/schemas/DTM'
+        descriptions:
+          type: array
+          items:
+            type: string
+          uniqueItems: true
+        formatCode:
+          type: string
+        identificativoDoc:
+          $ref: '#/components/schemas/EI'
+        identificativoRep:
+          $ref: '#/components/schemas/OID'
+        identificativoSottomissione:
+          $ref: '#/components/schemas/OID'
+        isDigitallySigned:
+          type: boolean
+        language:
+          type: string
+        mimeType:
+          type: string
+        patientId:
+          $ref: '#/components/schemas/CX'
+        referenceIdList:
+          type: array
+          items:
+            $ref: '#/components/schemas/CXi'
+          uniqueItems: true
+        sourcePatientId:
+          $ref: '#/components/schemas/CX'
+        tipoAttivitaClinica:
+          type: string
+        tipoDocumentoLivAlto:
+          type: string
+        tipologiaStruttura:
+          type: string
+        title:
+          type: string
+        typeCode:
+          type: string
+      required:
+      - assettoOrganizzativo
+      - author
+      - confidentialityCode
+      - creationTime
+      - formatCode
+      - identificativoDoc
+      - identificativoRep
+      - identificativoSottomissione
+      - isDigitallySigned
+      - mimeType
+      - patientId
+      - tipoAttivitaClinica
+      - tipoDocumentoLivAlto
+      - tipologiaStruttura
+      - typeCode
+    CursorResource:
+      type: object
+      properties:
+        after:
+          type: string
+        before:
+          type: string
+    DTM:
+      type: object
+    DocumentEntryResource:
+      type: object
+      properties:
+        administrativeRequest:
+          type: string
+          format: codice^descrizione
+        author:
+          $ref: '#/components/schemas/AuthorResource'
+        availabilityStatus:
+          type: string
+          format: URN
+        classCode:
+          $ref: '#/components/schemas/ClassificationResource'
+        comments:
+          type: string
+        confidentialityCode:
+          $ref: '#/components/schemas/ClassificationResource'
+        creationTime:
+          type: string
+          format: DTM
+        descriptions:
+          type: array
+          format: codice^descrizione^OID
+          items:
+            type: string
+            format: codice^descrizione^OID
+        documentSigned:
+          type: string
+          format: codice^descrizione
+        entryUUID:
+          type: string
+          format: URN
+        eventCodes:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClassificationResource'
+        formatCode:
+          $ref: '#/components/schemas/ClassificationResource'
+        hash:
+          type: string
+        healthcareFacilityTypeCode:
+          $ref: '#/components/schemas/ClassificationResource'
+        languageCode:
+          type: string
+        legalAuthenticator:
+          type: string
+          format: XCN
+        mimeType:
+          type: string
+        patientId:
+          type: string
+          format: CX
+        pinCode:
+          type: string
+        practiceSettingCode:
+          $ref: '#/components/schemas/ClassificationResource'
+        referenceIds:
+          type: array
+          format: CXi
+          items:
+            type: string
+            format: CXi
+        repositoryUniqueId:
+          type: string
+          format: OID
+        serviceStartTime:
+          type: string
+          format: DTM
+        serviceStopTime:
+          type: string
+          format: DTM
+        sizeInBytes:
+          type: integer
+          format: int64
+        sourcePatientId:
+          type: string
+          format: CX
+        sourcePatientInfo:
+          type: array
+          items:
+            type: string
+        storedProperly:
+          type: string
+        subjectApplicationId:
+          type: string
+        subjectApplicationVendor:
+          type: string
+        subjectApplicationVersion:
+          type: string
+        title:
+          type: string
+        typeCode:
+          $ref: '#/components/schemas/ClassificationResource'
+        uniqueId:
+          type: string
+          format: EI
+        uri:
+          type: string
+          format: URI
+        version:
+          type: string
+    EI:
+      type: object
+    OID:
+      type: object
+    PageResource:
+      type: object
+      properties:
+        cursors:
+          $ref: '#/components/schemas/CursorResource'
+        size:
+          type: integer
+          format: int32
+    PaginatedResponseDocumentEntryResource:
+      type: object
+      properties:
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/DocumentEntryResource'
+        paging:
+          $ref: '#/components/schemas/PageResource'
+    UpdateMetadataRequest:
+      type: object
+      properties:
+        administrativeRequest:
+          type: string
+        assettoOrganizzativo:
+          type: string
+        attiCliniciRegoleAccesso:
+          type: array
+          items:
+            type: string
+          uniqueItems: true
+        author:
+          $ref: '#/components/schemas/AuthorResource'
+        confidentialityCode:
+          type: string
+        conservazioneANorma:
+          type: string
+        creationTime:
+          $ref: '#/components/schemas/DTM'
+        dataFinePrestazione:
+          $ref: '#/components/schemas/DTM'
+        dataInizioPrestazione:
+          $ref: '#/components/schemas/DTM'
+        descriptions:
+          type: array
+          items:
+            type: string
+          uniqueItems: true
+        formatCode:
+          type: string
+        hash:
+          type: string
+        identificativoDoc:
+          $ref: '#/components/schemas/EI'
+        identificativoRep:
+          $ref: '#/components/schemas/OID'
+        identificativoSottomissione:
+          $ref: '#/components/schemas/OID'
+        isDigitallySigned:
+          type: boolean
+        language:
+          type: string
+        mimeType:
+          type: string
+        patientId:
+          $ref: '#/components/schemas/CX'
+        referenceIdList:
+          type: array
+          items:
+            $ref: '#/components/schemas/CXi'
+          uniqueItems: true
+        size:
+          type: integer
+          format: int64
+        sourcePatientId:
+          $ref: '#/components/schemas/CX'
+        tipoAttivitaClinica:
+          type: string
+        tipoDocumentoLivAlto:
+          type: string
+        tipologiaStruttura:
+          type: string
+        title:
+          type: string
+        typeCode:
+          type: string
+        version:
+          type: string
+      required:
+      - assettoOrganizzativo
+      - author
+      - confidentialityCode
+      - creationTime
+      - formatCode
+      - hash
+      - identificativoDoc
+      - identificativoRep
+      - identificativoSottomissione
+      - isDigitallySigned
+      - mimeType
+      - patientId
+      - size
+      - tipoAttivitaClinica
+      - tipoDocumentoLivAlto
+      - tipologiaStruttura
+      - typeCode
+      - version
+  securitySchemes:
+    BearerAuthentication:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http
