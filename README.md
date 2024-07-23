@@ -22,6 +22,112 @@ Il middleware regionale segue le linee guida definite dal [Gateway Nazionale](ht
 ## Risorse
 * [Open API](./openapi)
 
+## Endpoint
+L'endpoint del **sistema di test** è:
+
+  https://fse-api-test.regione.umbria.it
+
+<table>
+  <tr>
+   <td><strong>Endpoint URL</strong>
+   </td>
+   <td><strong>Metodo</strong>
+   </td>
+   <td><strong>Funzionalità</strong>
+   </td>
+  </tr>
+  <tr>
+   <td>/fse1/v1/documents/metadata</td>
+   <td>GET</td>
+   <td>Recupera i metadati dei documenti</td>
+  </tr>
+  <tr>
+   <td>/fse1/v1/repositories/{repositoryId}/documents</td>
+   <td>POST</td>
+   <td>Pubblica un documento nel circuito FSE 1.0</td>
+  </tr>
+  <tr>
+   <td>/fse1/v1/repositories/{repositoryId}/documents/{documentId}</td>
+   <td>DELETE</td>
+   <td>Elimina un documento e i relativi metadati</td>
+  </tr>
+  <tr>
+   <td>/fse1/v1/repositories/{repositoryId}/documents/{documentId}</td>
+   <td>GET</td>
+   <td>Recupera un documento</td>
+  </tr>
+  <tr>
+   <td>/fse1/v1/repositories/{repositoryId}/documents/{documentId}</td>
+   <td>PUT</td>
+   <td>Sostituisce un documento nel circuito FSE 1.0</td>
+  </tr>
+  <tr>
+   <td>/fse1/v1/repositories/{repositoryId}/documents/{documentId}/metadata</td>
+   <td>PUT</td>
+   <td>Aggiorna i metadati del documento nel circuito FSE 1.0</td>
+  </tr>
+</table>
+
+_Tabella 1: Endpoint/Funzionalità FSE1.0_
+
+<table>
+  <tr>
+   <td><strong>Endpoint URL</strong>
+   </td>
+   <td><strong>Metodo</strong>
+   </td>
+   <td><strong>Funzionalità</strong>
+   </td>
+  </tr>
+  <tr>
+   <td>/fse2/v1/documents/validation</td>
+   <td>POST</td>
+   <td>Validazione documenti</td>
+  </tr>
+  <tr>
+   <td>/fse2/v1/repositories/{repositoryId}/documents</td>
+   <td>POST</td>
+   <td>Pubblicazione creazione documenti
+  </tr>
+  <tr>
+   <td>/fse2/v1/repositories/{repositoryId}/documents/validate-and-create</td>
+   <td>POST</td>
+   <td>Pubblicazione creazione documenti</td>
+  </tr>
+  <tr>
+   <td>/fse2/v1/repositories/{repositoryId}/documents/{documentId}</td>
+   <td>PUT</td>
+   <td>Sostituzione documenti</td>
+  </tr>
+  <tr>
+   <td>/fse2/v1/repositories/{repositoryId}/documents/{documentId}</td>
+   <td>DELETE</td>
+   <td>Elimina un Documento</td>
+  </tr>
+  <tr>
+   <td>/fse2/v1/repositories/{repositoryId}/documents/{documentId}/metadata</td>
+   <td>PUT</td>
+   <td>Aggiornamento metadati</td>
+  </tr>
+  <tr>
+   <td>/fse2/v1/repositories/{repositoryId}/documents/validate-and-replace/{documentId}</td>
+   <td>PUT</td>
+   <td>Sostituzione documenti</td>
+  </tr>
+  <tr>
+   <td>/fse2/v1/status/{workflowInstanceId}</td>
+   <td>GET</td>
+   <td>Recupero stato transazione</td>
+  </tr>
+  <tr>
+   <td>/fse2/v1/status/search/{traceId}</td>
+   <td>GET</td>
+   <td>Recupero stato transazione</td>
+  </tr>
+</table>
+
+_Tabella 2: Endpoint/Funzionalità FSE2.0_
+
 ## Limitazioni
 Di seguito vengono elencate le limitazioni tecniche presenti.
 
