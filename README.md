@@ -27,6 +27,8 @@ Il base URL del **sistema di test** è:
 
   https://fse-api-test.regione.umbria.it
 
+gli endpoint sono elencati nelle seguenti tabelle.
+
 <table>
   <tr>
    <td><strong>Endpoint URL</strong>
