@@ -11,8 +11,7 @@ Le linee guida per l'integrazione seguono quelle definite a livello nazionale pe
 ## FSE 1.0
 L'attuale versione del Fascicolo Sanitario Elettronico.
 
-Le linee guida per l'interoperabilità riprendono quelle definite in FSE 2.0 in modo da allineare e rendere
-più semplice il processo di integrazione.
+Le linee guida per l'interoperabilità riprendono quelle definite in FSE 2.0 in modo da allineare e rendere più semplice il processo di integrazione.
 
 ## FSE 2.0
 La nuova versione del Fascicolo Sanitario Elettronico.
@@ -27,7 +26,7 @@ Il base URL del **sistema di test** è:
 
   https://fse-api-test.regione.umbria.it
 
-gli endpoint sono elencati nelle seguenti tabelle.
+gli endpoint sono elencati nelle seguenti tabelle suddivisi tra endpoint per alimentazione FSE 1.0, alimentazione FSE 2.0 e comuni (servizi di interrogazione, gestione consenso, gestione deleghe, ecc.).
 
 <table>
   <tr>
@@ -37,11 +36,6 @@ gli endpoint sono elencati nelle seguenti tabelle.
    </td>
    <td><strong>Funzionalità</strong>
    </td>
-  </tr>
-  <tr>
-   <td>/fse1/v1/documents/metadata</td>
-   <td>GET</td>
-   <td>Recupera i metadati dei documenti</td>
   </tr>
   <tr>
    <td>/fse1/v1/repositories/{repositoryId}/documents</td>
@@ -55,11 +49,6 @@ gli endpoint sono elencati nelle seguenti tabelle.
   </tr>
   <tr>
    <td>/fse1/v1/repositories/{repositoryId}/documents/{documentId}</td>
-   <td>GET</td>
-   <td>Recupera un documento</td>
-  </tr>
-  <tr>
-   <td>/fse1/v1/repositories/{repositoryId}/documents/{documentId}</td>
    <td>PUT</td>
    <td>Sostituisce un documento nel circuito FSE 1.0</td>
   </tr>
@@ -70,7 +59,7 @@ gli endpoint sono elencati nelle seguenti tabelle.
   </tr>
 </table>
 
-_Tabella 1: Endpoint delle Funzionalità FSE1.0_
+_Tabella 1: Endpoint delle funzionalità alimentazione FSE1.0_
 
 <table>
   <tr>
@@ -128,7 +117,30 @@ _Tabella 1: Endpoint delle Funzionalità FSE1.0_
   </tr>
 </table>
 
-_Tabella 2: Endpoint delle Funzionalità FSE2.0_
+_Tabella 2: Endpoint delle funzionalità alimentazione FSE2.0_
+
+<table>
+  <tr>
+   <td><strong>Endpoint URL</strong>
+   </td>
+   <td><strong>Metodo</strong>
+   </td>
+   <td><strong>Funzionalità</strong>
+   </td>
+  </tr>
+  <tr>
+   <td>/fse1/v1/documents/metadata</td>
+   <td>GET</td>
+   <td>Recupera i metadati dei documenti</td>
+  </tr>
+  <tr>
+   <td>/fse1/v1/repositories/{repositoryId}/documents/{documentId}</td>
+   <td>GET</td>
+   <td>Recupera un documento</td>
+  </tr>
+</table>
+
+_Tabella 3: Endpoint delle funzionalità comuni_
 
 ## Limitazioni
 Di seguito vengono elencate le limitazioni tecniche presenti.
