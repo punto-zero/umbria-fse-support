@@ -68,7 +68,7 @@ L'endpoint del **sistema di test** è:
   </tr>
 </table>
 
-_Tabella 1: Endpoint/Funzionalità FSE1.0_
+_Tabella 1: Endpoint delle Funzionalità FSE1.0_
 
 <table>
   <tr>
@@ -126,7 +126,7 @@ _Tabella 1: Endpoint/Funzionalità FSE1.0_
   </tr>
 </table>
 
-_Tabella 2: Endpoint/Funzionalità FSE2.0_
+_Tabella 2: Endpoint delle Funzionalità FSE2.0_
 
 ## Limitazioni
 Di seguito vengono elencate le limitazioni tecniche presenti.
