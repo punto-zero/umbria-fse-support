@@ -23,7 +23,7 @@ Il middleware regionale segue le linee guida definite dal [Gateway Nazionale](ht
 * [Open API](./openapi)
 
 ## Endpoint
-L'endpoint del **sistema di test** è:
+Il base URL del **sistema di test** è:
 
   https://fse-api-test.regione.umbria.it
 
