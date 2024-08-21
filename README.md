@@ -28,6 +28,9 @@ Il base URL del **sistema di test** è:
 
 gli endpoint sono elencati nelle seguenti tabelle suddivisi tra endpoint per alimentazione FSE 1.0, alimentazione FSE 2.0 e comuni (servizi di interrogazione, gestione consenso, gestione deleghe, ecc.).
 
+
+_Tabella 1: Endpoint delle funzionalità alimentazione FSE1.0_
+
 <table>
   <tr>
    <td><strong>Endpoint URL</strong>
@@ -59,7 +62,8 @@ gli endpoint sono elencati nelle seguenti tabelle suddivisi tra endpoint per ali
   </tr>
 </table>
 
-_Tabella 1: Endpoint delle funzionalità alimentazione FSE1.0_
+
+_Tabella 2: Endpoint delle funzionalità alimentazione FSE2.0_
 
 <table>
   <tr>
@@ -117,7 +121,8 @@ _Tabella 1: Endpoint delle funzionalità alimentazione FSE1.0_
   </tr>
 </table>
 
-_Tabella 2: Endpoint delle funzionalità alimentazione FSE2.0_
+
+_Tabella 3: Endpoint delle funzionalità comuni_
 
 <table>
   <tr>
@@ -139,8 +144,6 @@ _Tabella 2: Endpoint delle funzionalità alimentazione FSE2.0_
    <td>Recupera un documento</td>
   </tr>
 </table>
-
-_Tabella 3: Endpoint delle funzionalità comuni_
 
 ## Limitazioni
 Di seguito vengono elencate le limitazioni tecniche presenti.
