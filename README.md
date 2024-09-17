@@ -145,6 +145,10 @@ _Tabella 3: Endpoint delle funzionalità comuni_
   </tr>
 </table>
 
+Per i test utilizzare:
+
+<strong>repositoryId = 2.16.840.1.113883.2.9.2.100.4.5.2</strong>
+
 ## Limitazioni
 Di seguito vengono elencate le limitazioni tecniche presenti.
 
@@ -173,3 +177,12 @@ Per il servizio di firma OTP, oltre alla firma del singolo documento tramite il 
 1. Apertura sessione utilizzando credenziali ed OTP tramite il servizio *opensession* che restituisce l'id sessione
 2. Esecuzione in sequenza di più firme invocando più volte il servizio *pdfsignaturev2* utilizzando l'id sessione ottenuto al punto 1
 3. Chiusura sessione tramite il servizio *closesession* utilizzando l'id sessione ottenuto al punto 1
+
+## CATALOGO SPECIALISTICA AMBULATORIALE
+Per l'implmentazione di alcuni CDA2 è necessario utilizzare il nomenclatore tariffario ed il catalogo di specialistica ambulatoriale di Regione Umbria:
+
+[Catalogo specialistica ambulatoriale v3](/cataloghi/Catalogo_specialistica_Regione_Umbria_v3.xlsx)
+
+Le versioni attuali del nomenclatore e del catalogo resteranno in vigore, a normativa vigente, fino al 31-12-2024; dal 01-01-2025 verranno sostituiti dal nuovo nomenclatore e nuovo catalogo:
+
+[Catalogo specialistica ambulatoriale v5](/cataloghi/Catalogo_specialistica_Regione_Umbria_v5.xlsx)
