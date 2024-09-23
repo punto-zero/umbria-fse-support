@@ -403,6 +403,37 @@ Parametri aggiuntivi per FSE 1.0:
 
 <table>
   <tr>
+   <td colspan="2" ><strong>XDSDocumentEntry.referenceIdList</strong></td>
+  </tr>
+  <tr>
+   <td><strong>PARAMETRO</strong></td>
+   <td><code>referenceIdList</code></td>
+  </tr>
+  <tr>
+   <td><strong>DESCRIZIONE</strong></td>
+   <td>Questo metadato consente di identificare a livello nazionale una lista di documenti correlati al documento a cui il metadato fa riferimento.
+     Inoltre il metadato può contenere il numero dell’accesso abilitante al caricamento di immagini digitali in applicativi viewer nel reparto di radiologia.
+     Deve essere valorizzato come array di CXi con ciascun CXi valorizzato com indicato in Affinity Domain Italia paragrafo 2.14.
+   </td>
+  </tr>
+  <tr>
+   <td><strong>ESEMPIO</strong></td>
+   <td>[
+     
+     "100A01234567890^^^&2.16.840.1.113883.2.9.4.3.8&ISO^urn:ihe:iti:xds:2013:order",
+     "100A01234567891^^^&2.16.840.1.113883.2.9.4.3.8&ISO^urn:ihe:iti:xds:2013:order"
+]
+   </td>
+  </tr>
+  <tr>
+   <td><strong>VALIDAZIONE</strong></td>
+   <td>Non obbligatorio</td>
+  </tr>
+</table>
+
+
+<table>
+  <tr>
    <td colspan="2" ><strong>XDSDocumentEntry.title</strong></td>
   </tr>
   <tr>
