@@ -178,6 +178,17 @@ Per il servizio di firma OTP, oltre alla firma del singolo documento tramite il 
 2. Esecuzione in sequenza di più firme invocando più volte il servizio *pdfsignaturev2* utilizzando l'id sessione ottenuto al punto 1
 3. Chiusura sessione tramite il servizio *closesession* utilizzando l'id sessione ottenuto al punto 1
 
+Il parametro *typeOtpAuth* deve essere valorizzato con il dominio di rilascio delle firme:
+* **typeOtpAuth = frPuntozero** per le firme remote
+* **typeOtpAuth = faPuntozero** per le firme automatiche
+
+Endpoint di test:
+* [https://arss.demo.firma-automatica.it/ArubaSignService/ArubaSignService](https://arss.demo.firma-automatica.it/ArubaSignService/ArubaSignService)
+
+Endpoint di produzione:
+* [https://puntozero.enterpriseatp.cloud/ArubaSignService/ArubaSignService](https://puntozero.enterpriseatp.cloud/ArubaSignService/ArubaSignService)
+
+
 ## CATALOGO SPECIALISTICA AMBULATORIALE
 Per l'implmentazione di alcuni CDA2 è necessario utilizzare il nomenclatore tariffario ed il catalogo di specialistica ambulatoriale di Regione Umbria:
 
