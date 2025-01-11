@@ -23,9 +23,14 @@ La firma remota è disponibile in due diverse modalità:
 * **[FirmaAutomatica]**: per apporre la firma non è necessario inserire il codice OTP. Questo tipo di firma è normalmente utilizzato per la firma dei referti di laboratorio e/o in altre situazioni in cui è necessario procedere alla firma "massiva" di documenti
 Il tipo di firma da utilizzare viene concordato con ciascun fornitore prima dell'avvio delle attività.
 
-Il servizio è fornito da Aruba e queste sono le [specifiche di integrazione](/firma/manuale_arss.pdf). Sono inoltre disponibili gli esempi, gli endpoint di test e le credenziali di test per i servizi:
-* [Firma OTP](/firma/FirmaRemota.pdf)
-* [Firma Automatica](/firma/FirmaAutomatica.pdf)
+Il servizio è fornito da Aruba:
+* [Specifiche di integrazione](/firma/manuale_arss.pdf)
+
+Sono inoltre disponibili gli esempi, gli endpoint di test e le credenziali di test per i servizi:
+* [Firma OTP (SOAP)](/firma/FirmaRemota.pdf)
+* [Firma Automatica (SOAP)](/firma/FirmaAutomatica.pdf)
+* [Firma OTP (REST)](/firma/FirmaRemota_REST.pdf)
+* [Firma Automatica (REST)](/firma/FirmaAutomatica_REST.pdf)
 
 Gli esempi relativi alla firma PAdES sono indicati con *pdfsignatureV2*.
 
