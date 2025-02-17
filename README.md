@@ -10,9 +10,13 @@ per il Fascicolo Sanitario Elettronico.
 
 > [!NOTE]
 >
-> Endpoint Test: https://arss.demo.firma-automatica.it/ArubaSignService/ArubaSignService
+> Endpoint Test SOAP: https://arss.demo.firma-automatica.it/ArubaSignService/ArubaSignService
 > 
-> Endpoint Produzione: https://puntozero.enterpriseatp.cloud/ArubaSignService/ArubaSignService
+> Endpoint Produzione SOAP: https://puntozero.enterpriseatp.cloud/ArubaSignService/ArubaSignService
+>
+> Endpoint Test REST: https://arss.demo.firma-automatica.it/ArubaSignService/rest/ArubaSignService/pdfsignatureV2
+> 
+> Endpoint Produzione REST: https://puntozero.enterpriseatp.cloud/ArubaSignService/rest/ArubaSignService/pdfsignatureV2
 
 Regione Umbria mette a disposizione delle aziende sanitarie pubbliche e dei MMG/PLS convenzionati un servizio di firma remota via web service SOAP.
 
