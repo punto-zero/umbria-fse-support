@@ -18,7 +18,7 @@ per il Fascicolo Sanitario Elettronico.
 > 
 > Endpoint Produzione REST: https://puntozero.enterpriseatp.cloud/ArubaSignService/rest/ArubaSignService/pdfsignatureV2
 
-Regione Umbria mette a disposizione delle aziende sanitarie pubbliche e dei MMG/PLS convenzionati un servizio di firma remota via web service SOAP.
+Regione Umbria mette a disposizione delle aziende sanitarie pubbliche e dei MMG/PLS convenzionati un servizio di firma remota via web service SOAP e REST.
 
 Per la firma di documenti da inviare ad FSE è obbligatorio l'utilizzo della firma PAdES.
 
