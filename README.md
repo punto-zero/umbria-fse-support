@@ -50,4 +50,4 @@ Il parametro *typeOtpAuth* deve essere valorizzato con il dominio di rilascio de
 ## Catalogo Specialistica Ambulatoriale
 Per l'implmentazione di alcuni CDA2 è necessario utilizzare il nomenclatore tariffario ed il catalogo di specialistica ambulatoriale di Regione Umbria:
 
-[Catalogo specialistica ambulatoriale v8](/cataloghi/Catalogo_specialistica_Regione_Umbria_v8.xlsx)
+[Catalogo specialistica ambulatoriale v9](/cataloghi/Catalogo_specialistica_Regione_Umbria_v9.xlsx)
