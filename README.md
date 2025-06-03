@@ -3,8 +3,7 @@ In questo repository sono definite le linee guida per l'interoperabilità con il
 per il Fascicolo Sanitario Elettronico.
 
 ## REST API
-* [Open API](./openapi)
-* [Documentazione](https://github.com/punto-zero/umbria-fse-support/wiki/Documentazione-REST-API)
+* [Documentazione](https://github.com/punto-zero/umbria-fse-support/wiki)
 
 ## Servizio di Firma Remota
 
