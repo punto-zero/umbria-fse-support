@@ -45,6 +45,7 @@ Per il servizio di firma OTP, oltre alla firma del singolo documento tramite il 
 Il parametro *typeOtpAuth* deve essere valorizzato con il dominio di rilascio delle firme:
 * **typeOtpAuth = frPuntozero** per le firme remote
 * **typeOtpAuth = faPuntozero** per le firme automatiche
+N.B. il dominio deve comunque essere configurabile per singolo utente perché il dominio ptrebbe variare nel tempo e/o essere presenti, nelle aziende, firme già rilasciate con altri domini.
 
 ## Catalogo Specialistica Ambulatoriale
 Per l'implmentazione di alcuni CDA2 è necessario utilizzare il nomenclatore tariffario ed il catalogo di specialistica ambulatoriale di Regione Umbria:
