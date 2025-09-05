@@ -1,0 +1,225 @@
+<!-- esempio PSS attuale -->
+<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:a="http://www.w3.org/2005/08/addressing">
+	<soap:Header>
+		<wsse:Security xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:u="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" soap:mustUnderstand="1">
+			<u:Timestamp u:Id="_0">
+				<u:Created>2025-09-05T06:12:33.165Z</u:Created>
+				<u:Expires>2025-09-05T06:17:33.165Z</u:Expires>
+			</u:Timestamp>
+			<saml2:Assertion xmlns:saml2="urn:oasis:names:tc:SAML:2.0:assertion" xmlns:xs="http://www.w3.org/2001/XMLSchema" ID="urn:uuid:02039BCCF72DAC2CCD1752041100811" IssueInstant="2025-09-05T06:04:44.134Z" Version="2.0">
+				<!-- removed -->
+			</saml2:Assertion>
+		</wsse:Security>
+	</soap:Header>
+	<soap:Body>
+		<ihe:ProvideAndRegisterDocumentSetRequest xmlns:ihe="urn:ihe:iti:xds-b:2007">
+			<lcm:SubmitObjectsRequest xmlns:lcm="urn:oasis:names:tc:ebxml-regrep:xsd:lcm:3.0" xmlns="urn:oasis:names:tc:ebxml-regrep:xsd:rim:3.0">
+				<RegistryObjectList>
+					<RegistryPackage id="SubmissionSet00">
+						<Slot name="submissionTime">
+							<ValueList>
+								<Value>20250905081233</Value>
+							</ValueList>
+						</Slot>
+						<Classification classificationScheme="urn:uuid:a7058bb9-b4e4-4307-ba5b-e3f0ab85e12d" classifiedObject="SubmissionSet00" nodeRepresentation="" id="ID_00016">
+							<Slot name="authorPerson">
+								<ValueList>
+									<Value>PROVAX00X00X000Y^Cognome^Nome^^^dr^^^&amp;2.16.840.1.113883.2.9.4.3.2&amp;ISO</Value>
+								</ValueList>
+							</Slot>
+							<Slot name="authorInstitution">
+								<ValueList>
+									<Value>Azienda USL Umbria 1^^^^^&amp;2.16.840.1.113883.2.9.4.1.1&amp;ISO^^^^100201</Value>
+								</ValueList>
+							</Slot>
+							<!-- aggiungere authorRole -->
+							<Slot name="authorRole">
+								<ValueList>
+									<Value>APR</Value>
+								</ValueList>
+							</Slot>
+						</Classification>
+						<!-- XDSSubmissionSet.contentTypeCode = "OBS" -->
+						<Classification classificationScheme="urn:uuid:aa543740-bdda-424e-8c96-df4873be8500" classifiedObject="SubmissionSet00" nodeRepresentation="OBS" id="id_1">
+							<Slot name="codingScheme">
+								<ValueList>
+									<Value>2.16.840.1.113883.2.9.3.3.6.1.4</Value>
+								</ValueList>
+							</Slot>
+							<Name>
+								<LocalizedString value="Documento stato di salute"/>
+							</Name>
+						</Classification>
+						<ExternalIdentifier registryObject="SubmissionSet00" identificationScheme="urn:uuid:6b5aea1a-874d-4603-a4bc-96a0a7b38446" value="PROVAX00X00X000Y^^^&amp;2.16.840.1.113883.2.9.4.3.2&amp;ISO" id="id_2">
+							<Name>
+								<LocalizedString xml:lang="en-us" value="XDSSubmissionSet.patientId"/>
+							</Name>
+						</ExternalIdentifier>
+						<!-- 
+							XDSSubmissionSet.uniqueId = "2.16.840.1.113883.2.9.2.100.4.3.X"
+							Per Regione Umbria il codice istanza X deve essere generato secondo il formato: TIMESTAMP_MILLISECONDI.RANDOM_6_CIFRE
+							Per ottenere un OID valido ciascuna porzione di OID (sezione tra due punti) può valere "0" ma se composto da più cifre non può iniziare con "0" 
+							quindi il numero random va generato tra 100000 e 999999.
+							Esempio: 2.16.840.1.113883.2.9.2.100.4.3.20240923082141123.123456
+						-->
+						<ExternalIdentifier registryObject="SubmissionSet00" identificationScheme="urn:uuid:96fdda7c-d067-4183-912e-bf5ee74998a8" value="2.16.840.1.113883.2.9.2.100.4.3.20250905082141123.123456" id="id_3">
+							<Name>
+								<LocalizedString xml:lang="en-us" value="XDSSubmissionSet.uniqueId"/>
+							</Name>
+						</ExternalIdentifier>
+						<!-- XDSSubmissionSet.sourceId = "2.16.840.1.113883.2.9.2.100" -->
+						<ExternalIdentifier registryObject="SubmissionSet00" identificationScheme="urn:uuid:554ac39e-e3fe-47fe-b233-965d2a147832" value="2.16.840.1.113883.2.9.2.100" id="id_4">
+							<Name>
+								<LocalizedString xml:lang="en-us" value="XDSSubmissionSet.sourceId"/>
+							</Name>
+						</ExternalIdentifier>
+					</RegistryPackage>
+					<!-- mimeType = "application/pdf+text/x-cda-r2+xml" -->
+					<ExtrinsicObject mimeType="application/pdf+text/x-cda-r2+xml" objectType="urn:uuid:7edca82f-054d-47f2-a032-9b2a5b5186c1" id="Document00">
+						<Slot name="creationTime">
+							<ValueList>
+								<Value>20250905081233</Value>
+							</ValueList>
+						</Slot>
+						<Slot name="languageCode">
+							<ValueList>
+								<Value>it-IT</Value>
+							</ValueList>
+						</Slot>
+						<!-- eliminare XDSDocumentEntry.senderDeviceVersion -->
+						<Slot name="senderDeviceVersion">
+							<ValueList>
+								<Value>[SubjectApplicationVendor]^[SubjectApplicationId]^[SubjectApplicationVersion]</Value>
+							</ValueList>
+						</Slot>
+						<!-- aggiungere XDSDocumentEntry.SubjectApplication -->
+						<Slot name="urn:ihe:iti:xds:2024:SubjectApplication">
+							<ValueList>
+								<Value>[SubjectApplicationId]^[SubjectApplicationVendor]^[SubjectApplicationVersion]</Value>
+							</ValueList>
+						</Slot>						
+						<Slot name="sourcePatientId">
+							<ValueList>
+								<Value>PROVAX00X00X000Y^^^&amp;2.16.840.1.113883.2.9.4.3.2&amp;ISO</Value>
+							</ValueList>
+						</Slot>
+						<!-- aggiungere XDSDocumentEntry.documentSigned -->
+						<Slot name="urn:ita:2022:documentSigned">
+							<ValueList>
+								<Value>true^Documento firmato</Value>
+							</ValueList>
+						</Slot>
+						<!-- aggiungere XDSDocumentEntry.administrativeRequest -->
+						<Slot name="urn:ita:2022:administrativeRequest">
+							<ValueList>
+								<Value>SSN^Regime SSN</Value>
+							</ValueList>
+						</Slot>
+						<!-- aggiungere XDSDocumentEntry.title -->
+						<Name>
+							<LocalizedString value="Profilo Sanitario Sintetico" />
+						</Name>
+						<Classification classificationScheme="urn:uuid:41a5887f-8865-4c09-adf7-e362475b143a" classifiedObject="Document00" nodeRepresentation="SUM" id="ID_00001">
+							<Slot name="codingScheme">
+								<ValueList>
+									<Value>2.16.840.1.113883.2.9.3.3.6.1.5</Value>
+								</ValueList>
+							</Slot>
+							<Name>
+								<LocalizedString charset="UTF-8" value="Sommario"/>
+							</Name>
+						</Classification>
+						<Classification classificationScheme="urn:uuid:f4f85eac-e6cb-4883-b524-f2705394840f" classifiedObject="Document00" nodeRepresentation="N" id="ID_00002">
+							<Slot name="codingScheme">
+								<ValueList>
+									<Value>2.16.840.1.113883.5.25</Value>
+								</ValueList>
+							</Slot>
+							<Name>
+								<LocalizedString charset="UTF-8" value="Normal"/>
+							</Name>
+						</Classification>
+						<Classification classificationScheme="urn:uuid:a09d5840-386c-46f2-b5ad-9c3699a4309d" classifiedObject="Document00" nodeRepresentation="2.16.840.1.113883.2.9.10.1.4.1.1" id="ID_00003">
+							<Slot name="codingScheme">
+								<ValueList>
+									<Value>2.16.840.1.113883.2.9.3.3.6.1.6</Value>
+								</ValueList>
+							</Slot>
+							<Name>
+								<LocalizedString charset="UTF-8" value="Profilo Sanitario Sintetico"/>
+							</Name>
+						</Classification>
+						<Classification classificationScheme="urn:uuid:f33fb8ac-18af-42cc-ae0e-ed0b0bdb91e1" classifiedObject="Document00" nodeRepresentation="Territorio" id="ID_00004">
+							<Slot name="codingScheme">
+								<ValueList>
+									<Value>2.16.840.1.113883.2.9.3.3.6.1.1</Value>
+								</ValueList>
+							</Slot>
+							<Name>
+								<LocalizedString charset="UTF-8" value="Territorio"/>
+							</Name>
+						</Classification>
+						<Classification classificationScheme="urn:uuid:cccf5598-8b07-4b77-a05e-ae952c785ead" classifiedObject="Document00" nodeRepresentation="AD_PSC130" id="ID_00005">
+							<Slot name="codingScheme">
+								<ValueList>
+									<Value>2.16.840.1.113883.2.9.3.3.6.1.2</Value>
+								</ValueList>
+							</Slot>
+							<Name>
+								<LocalizedString charset="UTF-8" value="Medicina di Base"/>
+							</Name>
+						</Classification>
+						<Classification classificationScheme="urn:uuid:f0306f51-975f-434e-a61c-c59651d33983" classifiedObject="Document00" nodeRepresentation="60591-5" id="ID_00006">
+							<Slot name="codingScheme">
+								<ValueList>
+									<Value>2.16.840.1.113883.6.1</Value>
+								</ValueList>
+							</Slot>
+							<Name>
+								<LocalizedString charset="UTF-8" value="Profilo Sanitario Sintetico"/>
+							</Name>
+						</Classification>
+						<Classification classificationScheme="urn:uuid:93606bcf-9494-43ec-9b4e-a7748d1a838d" classifiedObject="Document00" nodeRepresentation="" id="ID_00000">
+							<Slot name="authorPerson">
+								<ValueList>
+									<Value>PROVAX00X00X000Y^Cognome^Nome^^^dr^^^&amp;2.16.840.1.113883.2.9.4.3.2&amp;ISO</Value>
+								</ValueList>
+							</Slot>
+							<Slot name="authorInstitution">
+								<ValueList>
+									<Value>Azienda USL Umbria 1^^^^^&amp;2.16.840.1.113883.2.9.4.1.1&amp;ISO^^^^100201</Value>
+								</ValueList>
+							</Slot>
+							<!-- aggiungere authorRole -->
+							<Slot name="authorRole">
+								<ValueList>
+									<Value>APR</Value>
+								</ValueList>
+							</Slot>
+						</Classification>
+						<ExternalIdentifier registryObject="Document00" identificationScheme="urn:uuid:58a6f841-87b3-4a3e-92fd-a8ffeff98427" value="PROVAX00X00X000Y^^^&amp;2.16.840.1.113883.2.9.4.3.2&amp;ISO" id="ID_00014">
+							<Name>
+								<LocalizedString xml:lang="en-us" value="XDSDocumentEntry.patientId"/>
+							</Name>
+						</ExternalIdentifier>
+						<!-- generare UUID come identificativo documento -->
+						<ExternalIdentifier registryObject="Document00" identificationScheme="urn:uuid:2e82c1f6-a085-4c72-9da3-8640a32e42ab" value="2.16.840.1.113883.2.9.2.100.4.4^[UUID]" id="ID_00015">
+							<Name>
+								<LocalizedString xml:lang="en-us" value="XDSDocumentEntry.uniqueId"/>
+							</Name>
+						</ExternalIdentifier>
+					</ExtrinsicObject>
+					<Classification classifiedObject="SubmissionSet00" classificationNode="urn:uuid:a54d6aa5-d40d-43f9-88c5-b4633d873bdd" id="id_14"/>
+					<Association associationType="urn:oasis:names:tc:ebxml-regrep:AssociationType:HasMember" sourceObject="SubmissionSet00" targetObject="Document00" id="ID_00007">
+						<Slot name="SubmissionSetStatus">
+							<ValueList>
+								<Value>Original</Value>
+							</ValueList>
+						</Slot>
+					</Association>
+				</RegistryObjectList>
+			</lcm:SubmitObjectsRequest>
+			<ihe:Document id="Document00"><!-- PDF BASE64 REMOVED --></ihe:Document>
+		</ihe:ProvideAndRegisterDocumentSetRequest>
+	</soap:Body>
+</soap:Envelope>
