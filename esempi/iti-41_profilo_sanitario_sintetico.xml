@@ -67,7 +67,7 @@
 								<LocalizedString xml:lang="en-us" value="XDSSubmissionSet.uniqueId"/>
 							</Name>
 						</ExternalIdentifier>
-						<!-- XDSSubmissionSet.sourceId = "2.16.840.1.113883.2.9.2.100" -->
+						<!-- XDSSubmissionSet.sourceId = "2.16.840.1.113883.2.9.2.100" oppure "2.16.840.1.113883.2.9.4.1.1.[CODICEASL]" -->
 						<ExternalIdentifier registryObject="SubmissionSet00" identificationScheme="urn:uuid:554ac39e-e3fe-47fe-b233-965d2a147832" value="2.16.840.1.113883.2.9.2.100" id="id_4">
 							<Name>
 								<LocalizedString xml:lang="en-us" value="XDSSubmissionSet.sourceId"/>
@@ -84,12 +84,6 @@
 						<Slot name="languageCode">
 							<ValueList>
 								<Value>it-IT</Value>
-							</ValueList>
-						</Slot>
-						<!-- eliminare XDSDocumentEntry.senderDeviceVersion -->
-						<Slot name="senderDeviceVersion">
-							<ValueList>
-								<Value>[SubjectApplicationVendor]^[SubjectApplicationId]^[SubjectApplicationVersion]</Value>
 							</ValueList>
 						</Slot>
 						<!-- aggiungere XDSDocumentEntry.SubjectApplication -->
