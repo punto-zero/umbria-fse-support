@@ -9,11 +9,11 @@ per il Fascicolo Sanitario Elettronico.
 
 > [!NOTE]
 >
-> Endpoint Test SOAP: https://arss.demo.firma-automatica.it/ArubaSignService/ArubaSignService
+> Endpoint Test SOAP: https://atp.demo.firma-automatica.it/ArubaSignService/ArubaSignService
 > 
 > Endpoint Produzione SOAP: https://puntozero.enterpriseatp.cloud/ArubaSignService/ArubaSignService
 >
-> Endpoint Test REST: https://arss.demo.firma-automatica.it/ArubaSignService/rest/ArubaSignService/pdfsignatureV2
+> Endpoint Test REST: https://atp.demo.firma-automatica.it/ArubaSignService/rest/ArubaSignService/pdfsignatureV2
 > 
 > Endpoint Produzione REST: https://puntozero.enterpriseatp.cloud/ArubaSignService/rest/ArubaSignService/pdfsignatureV2
 
